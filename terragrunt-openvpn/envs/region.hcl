@@ -1,5 +1,5 @@
 locals {
-    project = "bgts-home-vpn"
+    project = "home-vpn"
     region  = "ap-southeast-1"
-    profile = "superjc"
+    profile = "default"
 }

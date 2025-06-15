@@ -1,5 +1,5 @@
 terraform {
-  source = "D:/Users/JC/Documents/Personal/Weekend Projects/terraform-modules/modules/aws-vpc"
+  source = "/workspaces/aws-terraform-modules//modules/aws-vpc"
 }
 include {
   path = find_in_parent_folders("root.hcl")
@@ -51,8 +51,8 @@ inputs = {
     custom_tags = {
       Project     = "${include.region.locals.project}"
       Environment = "${include.env.locals.environment}"
-      Contact     = "jcbagtas"
-      Cost_Center = "OpenVPN"
+      Contact     = "team-ulap"
+      Cost_Center = "home-vpn"
     }
     profile = "${include.region.locals.profile}"
     environment = "${include.env.locals.environment}"
@@ -60,17 +60,9 @@ inputs = {
       ingress = [
         {
           rule_no    = 100
-          protocol   = "udp"
-          action     = "allow"
-          cidr_block = "0.0.0.0/0"
-          from_port  = 1194
-          to_port    = 1194
-        },
-        {
-          rule_no    = 110
           protocol   = "tcp"
           action     = "allow"
-          cidr_block = "0.0.0.0/0"
+          cidr_block = include.env.locals.my_ipaddress
           from_port  = 1024
           to_port    = 65535
         }
@@ -78,17 +70,9 @@ inputs = {
       egress = [
         {
           rule_no    = 100
-          protocol   = "udp"
-          action     = "allow"
-          cidr_block = "0.0.0.0/0"
-          from_port  = 1194
-          to_port    = 1194
-        },
-        {
-          rule_no    = 110
           protocol   = "tcp"
           action     = "allow"
-          cidr_block = "0.0.0.0/0"
+          cidr_block = include.env.locals.my_ipaddress
           from_port  = 1024
           to_port    = 65535
         }

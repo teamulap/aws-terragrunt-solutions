@@ -1,10 +1,5 @@
 dependency "vpc" {
   config_path = "../vpc"
-  skip_outputs = true
-  mock_outputs = {
-    vpc_id    = "vpc-12345678"
-    subnet_ids = ["subnet-11111111", "subnet-22222222"]
-  }
 }
 include "root"{
   path = find_in_parent_folders("root.hcl")
@@ -19,7 +14,7 @@ include "region" {
   expose = true
 }
 terraform {
-  source = "D:/Users/JC/Documents/Personal/Weekend Projects/terraform-modules//modules/aws-ec2-openvpn"
+  source = "/workspaces/aws-terraform-modules/modules/aws-ec2-openvpn"
 }
 
 generate "provider" {
@@ -53,14 +48,48 @@ inputs = {
   name = "${include.region.locals.project}"
   instance_type = "t2.micro"  # Free-tier eligible instance type
   region      = "${include.region.locals.region}"    # Specify your desired AWS region
-  key_name    = "${include.region.locals.project}-${include.env.locals.environment}" # Replace with your EC2 key pair name
+  # key_name    = "${include.region.locals.project}-${include.env.locals.environment}" # Replace with your EC2 key pair name
   custom_tags = {
     Project     = "${include.region.locals.project}"
     Environment = "${include.env.locals.environment}"
-    Contact     = "jcbagtas"
-    Cost_Center = "OpenVPN"
+    Contact     = "team-ulap"
+    Cost_Center = "home-vpn"
   }
   vpc_id = dependency.vpc.outputs.vpc_id
   subnet_id = dependency.vpc.outputs.subnet_ids[0]  # Use the first public subnet
+  ingress_rules = [
+    {
+      from_port   = 1194
+      to_port     = 1194
+      protocol    = "udp"
+      cidr_blocks = [include.env.locals.my_ipaddress]
+    },
+    {
+      from_port   = 943
+      to_port     = 943
+      protocol    = "tcp"
+      cidr_blocks = [include.env.locals.my_ipaddress]
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      cidr_blocks = [include.env.locals.my_ipaddress]
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = [include.env.locals.my_ipaddress]
+    }
+  ] 
+  egress_rules = [
+    {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = [include.env.locals.my_ipaddress]
+    }
+  ] 
 }
 

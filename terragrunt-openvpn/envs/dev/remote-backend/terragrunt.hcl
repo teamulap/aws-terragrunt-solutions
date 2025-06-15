@@ -8,7 +8,7 @@ include "region" {
 }
 
 terraform {
-    source = "D:/Users/JC/Documents/Personal/Weekend Projects/terraform-modules/modules/remote-backend"
+    source = "/workspaces/aws-terraform-modules//modules/remote-backend"
 }
 
 generate "provider" {
@@ -30,7 +30,7 @@ inputs = {
     custom_tags = {
         Project     = "${include.region.locals.project}"
         Environment = "${include.env.locals.environment}"
-        Contact     = "jcbagtas"
-        Cost_Center = "OpenVPN"
+        Contact     = "team-ulap"
+        Cost_Center = "home-vpn"
     }
 }

@@ -1,0 +1,43 @@
+{
+    "name": "Team Ulap - Terragrunt Solutions",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
+    "mounts": [
+        // Optional, only if you want to mount a local directory into the container
+        "source=/mnt/d/Users/JC/Documents/Personal/Weekend_Projects/aws-terraform-modules,target=/workspaces/aws-terraform-modules,type=bind",
+        "source=/mnt/d/Users/JC/Documents/Personal/Weekend_Projects/.aws,target=/root/.aws,type=bind",
+        "source=/mnt/d/Users/JC/Documents/Personal/Weekend_Projects/.ssh,target=/root/.ssh,type=bind"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "oderwat.indent-rainbow",
+                "outofsync42.select-compare-tabs",
+                "hashicorp.terraform",
+                "hashicorp.hcl",
+                "gruntwork.terragrunt",
+                "ms-azuretools.vscode-containers"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "[terraform]" : {
+                    "editor.defaultFormatter": "hashicorp.terraform"
+                },
+                "[hcl]": {
+                    "editor.defaultFormatter": "hashicorp.hcl"
+                },
+                "[json]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[yaml]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                }
+            }
+        }
+    },
+    "postCreateCommand": "echo 'DevContainer successfully built. Installed versions:' && git --version && aws --version && terraform version && terragrunt --version && bash --version && ssh -V",
+    "remoteUser": "root"
+}
