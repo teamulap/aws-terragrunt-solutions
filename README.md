@@ -20,6 +20,10 @@ You may see a sample solution repo in our [AWS Terragrunt Solutions](https://git
 Make sure you setup the `hcl` files properly and always review the plan before applying!
 
 1. Open the unit. ie `terragrunt-openvpn/envs/dev`
+1. You may need to run this so you can reference the modules from git:
+   ```shell
+   git config --global --add safe.directory .
+   ```
 1. Prepare the remote-backend and vpc
    - Make sure that all of the details in your `hcl` files are correct before your un these in order:
    ```shell

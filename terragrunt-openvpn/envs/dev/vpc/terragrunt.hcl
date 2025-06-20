@@ -1,5 +1,6 @@
 terraform {
-  source = "/workspaces/aws-terraform-modules//modules/aws-vpc"
+  # source = "/workspaces/aws-terraform-modules//modules/aws-vpc"
+  source = "git::https://github.com/teamulap/aws-terraform-modules.git//modules/aws-vpc?ref=v1.0.0"
 }
 include {
   path = find_in_parent_folders("root.hcl")
