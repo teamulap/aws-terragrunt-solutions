@@ -14,7 +14,8 @@ include "region" {
   expose = true
 }
 terraform {
-  source = "/workspaces/aws-terraform-modules/modules/aws-ec2-openvpn"
+  # source = "https://github.com/teamulap/aws-terraform-modules.git"
+  source = "git::https://github.com/teamulap/aws-terraform-modules.git//modules/aws-ec2-openvpn?ref=v1.0.0"
 }
 
 generate "provider" {

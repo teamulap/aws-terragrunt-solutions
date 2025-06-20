@@ -8,7 +8,8 @@ include "region" {
 }
 
 terraform {
-    source = "/workspaces/aws-terraform-modules//modules/remote-backend"
+    # source = "/workspaces/aws-terraform-modules//modules/remote-backend"
+  source = "git::https://github.com/teamulap/aws-terraform-modules.git//modules/remote-backend?ref=v1.0.0"
 }
 
 generate "provider" {
