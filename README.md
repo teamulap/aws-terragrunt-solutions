@@ -22,26 +22,22 @@ Make sure you setup the `hcl` files properly and always review the plan before a
 1. Open the unit. ie `terragrunt-openvpn/envs/dev`
 1. Prepare the remote-backend and vpc
    - Make sure that all of the details in your `hcl` files are correct before your un these in order:
-
-```shell
-cd terragrunt-openvpn/envs/dev/remote-backend
-terragrunt init
-terragrunt plan
-terragrunt apply
-```
-
-```shell
-cd terragrunt-openvpn/envs/dev/vpc
-terragrunt init
-terragrunt plan
-terragrunt apply
-```
-
+   ```shell
+   cd terragrunt-openvpn/envs/dev/remote-backend
+   terragrunt init
+   terragrunt plan
+   terragrunt apply
+   ```
+   ```shell
+   cd terragrunt-openvpn/envs/dev/vpc
+   terragrunt init
+   terragrunt plan
+   terragrunt apply
+   ```
 1. Run the actual solution module
-
-```shell
-cd terragrunt-openvpn/envs/dev/openvpn
-terragrunt init
-terragrunt plan
-terragrunt apply
-```
+   ```shell
+   cd terragrunt-openvpn/envs/dev/openvpn
+   terragrunt init
+   terragrunt plan
+   terragrunt apply
+   ```
