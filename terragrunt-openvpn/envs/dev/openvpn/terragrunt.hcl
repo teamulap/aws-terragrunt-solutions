@@ -46,6 +46,7 @@ EOF
 
 inputs = {
   name = "${include.region.locals.project}"
+  environment = "${include.env.locals.environment}"
   instance_type = "t2.micro"  # Free-tier eligible instance type
   region      = "${include.region.locals.region}"    # Specify your desired AWS region
   # key_name    = "${include.region.locals.project}-${include.env.locals.environment}" # Replace with your EC2 key pair name
@@ -55,8 +56,8 @@ inputs = {
     Contact     = "team-ulap"
     Cost_Center = "home-vpn"
   }
-  vpc_id = dependency.vpc.outputs.vpc_id
   subnet_id = dependency.vpc.outputs.subnet_ids[0]  # Use the first public subnet
+  vpc_id = dependency.vpc.outputs.vpc_id
   ingress_rules = [
     {
       from_port   = 1194

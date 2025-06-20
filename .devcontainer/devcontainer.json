@@ -19,7 +19,8 @@
                 "hashicorp.terraform",
                 "hashicorp.hcl",
                 "gruntwork.terragrunt",
-                "ms-azuretools.vscode-containers"
+                "ms-azuretools.vscode-containers",
+                "golang.go" // Added Go extension for VS Code
             ],
             "settings": {
                 "editor.formatOnSave": true,
@@ -34,10 +35,16 @@
                 },
                 "[yaml]": {
                     "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[go]": { // Added Go-specific settings
+                    "editor.formatOnSave": true,
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "explicit"
+                    }
                 }
             }
         }
     },
-    "postCreateCommand": "echo 'DevContainer successfully built. Installed versions:' && git --version && aws --version && terraform version && terragrunt --version && bash --version && ssh -V",
+    "postCreateCommand": "echo 'DevContainer successfully built. Installed versions:' && git --version && aws --version && terraform version && terragrunt --version && go version && bash --version && ssh -V",
     "remoteUser": "root"
 }
