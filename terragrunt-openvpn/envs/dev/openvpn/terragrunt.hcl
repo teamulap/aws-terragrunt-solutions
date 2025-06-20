@@ -50,6 +50,7 @@ inputs = {
   instance_type = "t2.micro"  # Free-tier eligible instance type
   region      = "${include.region.locals.region}"    # Specify your desired AWS region
   # key_name    = "${include.region.locals.project}-${include.env.locals.environment}" # Replace with your EC2 key pair name
+  public_key_path = "~/.ssh/id_rsa.pub" # Path to your public SSH key
   custom_tags = {
     Project     = "${include.region.locals.project}"
     Environment = "${include.env.locals.environment}"
@@ -98,10 +99,12 @@ inputs = {
   ] 
   egress_rules = [
     {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
+      rule_no    = 100
+      protocol   = "-1"
+      action     = "allow"
+      cidr_block = "0.0.0.0/0"
+      from_port  = 0
+      to_port    = 0
     }
   ] 
 }
