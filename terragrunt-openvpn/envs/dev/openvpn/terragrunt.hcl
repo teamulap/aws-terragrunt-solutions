@@ -82,6 +82,18 @@ inputs = {
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = [include.env.locals.my_ipaddress]
+    },
+    {
+      from_port   = 1218
+      to_port     = 1218
+      protocol    = "tcp"
+      cidr_blocks = [include.env.locals.my_ipaddress]
+    },
+    {
+      from_port   = 945
+      to_port     = 945
+      protocol    = "tcp"
+      cidr_blocks = [include.env.locals.my_ipaddress]
     }
   ] 
   egress_rules = [
@@ -89,7 +101,7 @@ inputs = {
       from_port   = 0
       to_port     = 0
       protocol    = "-1"
-      cidr_blocks = [include.env.locals.my_ipaddress]
+      cidr_blocks = ["0.0.0.0/0"]
     }
   ] 
 }
