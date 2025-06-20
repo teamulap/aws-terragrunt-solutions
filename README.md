@@ -23,3 +23,4 @@ See the configuration in `/.devcontainer/` directory.
 ### Know More about Dev Containers
 
 [Overview](https://containers.dev)
+[Our Setup](./DEVCONTAINER_TUTORIAL.md)
